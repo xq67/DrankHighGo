@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"E:\workSpace_jsp\mybatis_dvd\WebRoot\mybatis-3-mapper.dtd">
+<mapper namespace="com.jinglun.dao.L_userDao">
+	<cache></cache>
+	<select id="validateUser1" resultType="User">
+		SELECT * FROM User WHERE uname=#{uname} and upwd=#{upwd};
+	</select>
+	<select id="validateUser2" resultType="User">
+		SELECT * FROM User WHERE uphone=#{uphone} and upwd=#{upwd};
+	</select>
+	<select id="getAllNames" resultType="string">
+		SELECT uname FROM User;
+	</select>
+	<insert id="registerUser">
+		INSERT INTO USER (uphone,upwd)VALUES(#{phone},#{pwd});
+	</insert>
+	<insert id="addcar">
+		INSERT INTO car (dbid,COUNT,uid)VALUES(#{dbid},#{dbcount},#{uid});
+	</insert>
+	
+	<resultMap type="Car" id="carMap">
+		<id property="cid" column="cId"/>
+		<association property="db" javaType="DrankB" column="dbId" select="com.jinglun.dao.PageMapper.findDrankBById"></association>
+	</resultMap>
+	<select id="findCarbdByUid" resultMap="carMap">
+		select * from car where uid=#{uid}
+	</select>
+</mapper>

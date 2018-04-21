@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jinglun.dao.PageMapper">
+	<cache></cache>
+	<!-- 订单列表映射 -->
+	<resultMap type="Overorder" id="overO">
+		<id property="ooid" column="ooId"/>
+		<association property="user" javaType="User" column="uid" select="findUserByid"></association>
+	</resultMap>
+	<select id="findAllOvByDbid" resultMap="overO">
+		SELECT * FROM overorder where dbid=#{id}
+	</select>
+	<!-- 订单列表映射结束 -->
+	<!-- 评论列表映射 -->
+	<resultMap type="Say" id="mapsay">
+		<id property="sayid" column="sayId"/>
+		<association property="user" javaType="User" column="uid" select="findUserByid"></association>
+	</resultMap>
+	<select id="findAllSayByDbid" resultMap="mapsay">
+		SELECT * FROM say where dbid=#{id}
+	</select>
+	<!-- 评论列表映射结束-->
+	<select id="findUserByid" resultType="User">
+		SELECT * FROM user where uid=#{uid}
+	</select>
+	<select id="findAllDea" resultType="Dealer">
+		SELECT * FROM DEALER
+	</select>
+	<select id="findAllDra" resultType="DrankA">
+		SELECT * FROM DRANKA
+	</select>
+	<select id="findAllDrb" resultType="DrankB">
+		SELECT db.dbId,db.daId,db.dbName,db.dbPrice,db.dbImgUrl FROM drankb db ORDER BY stock DESC LIMIT 10
+	</select>
+	<select id="findNotice" resultType="Notice">
+		select N.notId,N.notContent,N.notTime from NOTICE N ORDER BY N.notTime DESC LIMIT 3
+	</select>
+	<select id="findDrankBById" resultType="DrankB">
+		SELECT * FROM DRANKB where dbid=#{dbId}
+	</select>
+	<select id="findDbImgById" resultType="Imgurl">
+		SELECT * FROM imgurl where imgid=#{id}
+	</select>
+	<select id="findHotDB" resultType="DrankB">
+		SELECT * FROM DRANKB where dbpro=#{id}
+	</select>
+	<select id="findDBByDaid" resultType="DrankB">
+		SELECT * FROM DRANKB where daid=#{id}
+	</select>
+	<select id="findDbsellCount" resultType="int">
+		SELECT COUNT(1)FROM overorder WHERE dbid=#{id}
+	</select>
+	<select id="findlikedb" resultType="DrankB">
+		SELECT * FROM drankb WHERE LOCATE(#{dblike},DBNAME)>0;	
+	</select>
+	<select id="findCommodityByTop" resultType="DrankB">
+		SELECT * FROM drankb ORDER BY stock ASC LIMIT 12
+	</select>
+	<select id="findCommodityByLater" resultType="DrankB">
+		SELECT * FROM drankb  ORDER BY dbid DESC   LIMIT 10;
+	</select>
+	<select id="findlikebyTop" resultType="DrankB">
+	select * from drankb where LOCATE(#{dblike},DBNAME)>0 ORDER BY stock ASC;
+	</select>
+	<select id="findlikebymoney" resultType="DrankB">
+	select * from drankb where LOCATE(#{dblike},DBNAME)>0  ORDER BY dbprice
+	<if test="order=='desc'">
+		  desc
+	</if>
+	
+
+	</select>
+</mapper>

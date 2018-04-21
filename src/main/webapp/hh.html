@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hh.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="static/js/jquery-1.12.4.js"></script>
+    
+
+  </head>
+  <script type="text/javascript">
+  	$(function(){
+  		$("input[type=button]").click(function(){
+  			$.get("http://localhost:8083/pageshow",function(mes){
+  				$("p").text(mes.dea[1].deaname);
+  				alert(mes.dea[1]);
+  			});
+  		});
+  	});
+  </script>
+  <body>
+    This is my HTML page. <br>
+    <p>111</p>
+    <input type="button" name="信息">
+  </body>
+</html>
