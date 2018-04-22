@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class TextJsp {
-	@RequestMapping("/textj")
+	@RequestMapping("/welcome")
 	public String textJ(){
-		return "MyJsp";
+		return "login";
 	}
 	
 }
