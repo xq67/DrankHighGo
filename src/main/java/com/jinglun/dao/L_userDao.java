@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.jinglun.entity.Address;
 import com.jinglun.entity.Car;
 import com.jinglun.entity.User;
 
@@ -20,4 +21,12 @@ public interface L_userDao {
 	public int addcar(@Param("uid")Integer uid,@Param("dbid")Integer dbid,@Param("dbcount")Integer dbcount);
 	//显示用户购物车中的物品
 	public List<Car> findCarbdByUid(@Param("uid")Integer uid);
+	//dealDo事件0---查询购物车信息
+	public Car findcarBycid(@Param("cid")Integer cid);
+	//dealDo事件1---生成订单
+	public int deal_CreateOverOrder(Car car);
+	//dealDo事件2---删除购物车
+	public int deal_delCar(@Param("cid")Integer cid);
+	//获取用户所有的地址
+	public List<Address> findAdd(@Param("uid")Integer uid);
 }

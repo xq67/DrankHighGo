@@ -9,6 +9,13 @@ public class Car implements Serializable{
 	private DrankB db;
 	private Integer count;
 	private Integer addid;
+	private String phone;
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public Integer getCid() {
 		return cid;
 	}

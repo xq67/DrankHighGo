@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jinglun.biz.L_userBiz;
+import com.jinglun.entity.Address;
 import com.jinglun.entity.Car;
 import com.jinglun.entity.DrankB;
 import com.jinglun.entity.User;
@@ -80,5 +81,12 @@ public class UserController {
 		List<Car> list=l_userBiz.findCarbdByUid(uid);
 		return list;
 	}
-	
+	//获取用户地址
+	@RequestMapping("/userAddress")
+	public List<Address> userAddress(HttpServletRequest request){
+		User user=(User) request.getSession().getAttribute("user");
+		Integer uid=user.getUid();
+		List<Address> list=l_userBiz.findAdd(uid);
+		return list;
+	}
 }

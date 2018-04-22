@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jinglun.biz.L_userBiz;
 import com.jinglun.dao.L_userDao;
+import com.jinglun.entity.Address;
 import com.jinglun.entity.Car;
 import com.jinglun.entity.User;
 @Service
@@ -46,6 +47,29 @@ public class L_userBizImpl implements L_userBiz {
 	public List<Car> findCarbdByUid(Integer uid) {
 		// TODO Auto-generated method stub
 		return l_userDao.findCarbdByUid(uid);
+	}
+
+	@Override
+	public int addDeal(List<Integer> cids) {
+		int o=0,c=0,mes=0;
+		for (Integer cid : cids) {
+			//查询购物车信息
+			Car car=l_userDao.findcarBycid(cid);
+			//创建订单
+			o+=l_userDao.deal_CreateOverOrder(car);
+			//删除购物车信息
+			c+=l_userDao.deal_delCar(cid);
+		}
+		if((o+c)==(2*cids.size())){
+			mes=1;
+		}
+		return mes;
+	}
+
+	@Override
+	public List<Address> findAdd(Integer uid) {
+		// TODO Auto-generated method stub
+		return l_userDao.findAdd(uid);
 	}
 
 	
