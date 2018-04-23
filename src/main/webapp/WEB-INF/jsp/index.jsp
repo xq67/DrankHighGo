@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -19,6 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	  <script src="../../static/js/jquery-1.12.4.js"></script>
 	 <link rel="stylesheet" href="../../static/css/x-admin.css" media="all">
   </head>
     <body>
@@ -31,10 +33,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul class="layui-nav" lay-filter="">
                       <li class="layui-nav-item"><img src="../../static/images/logo.png" class="layui-circle" style="border: 2px solid #A9B7B7;" width="35px" alt=""></li>
                       <li class="layui-nav-item">
-                        <a href="javascript:;">admin</a>
+                        <a href="javascript:;"></a>
                         <dl class="layui-nav-child"> <!-- 二级菜单 -->
                           <dd><a href="">个人信息</a></dd>
-                          <dd><a href="">切换帐号</a></dd>
                           <dd><a href="./login.html">退出</a></dd>
                         </dl>
                       </li>
@@ -52,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul class="layui-nav layui-nav-tree site-demo-nav" lay-filter="side">
                         <li class="layui-nav-item">
                             <a class="javascript:;" href="javascript:;">
-                                <i class="layui-icon" style="top: 3px;">&#xe607;</i><cite>问题管理</cite>
+                                <i class="layui-icon" style="top: 3px;">&#xe607;</i><cite>酒品管理</cite>
                             </a>
                             <dl class="layui-nav-child">
                                 <dd class="">
@@ -86,16 +87,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <dd class="">
                                     <dd class="">
                                     
-                                        <a id="ccc" href="javascript:void(0);" data="welcome.jsp">
-                                        <script>
-                                        	$(function(){
-                                        		$("#ccc").click(function(){
-                                        			alert("xxx");
-                                        			var data=$(this).attr("data");
-                                        			location.href="deip.do?data="+data;
-                                        		});
-                                        	});
-                                        </script>
+                                        <a href="javascript:;" _href="deip.do">
+                                       
                                             <cite>品牌管理（待开发）</cite>
                                         </a>
                                     </dd>
@@ -349,7 +342,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </ul>
                 <div class="layui-tab-content site-demo site-demo-body">
                     <div class="layui-tab-item layui-show">
-                        <iframe frameborder="0" src="./welcome.html" class="x-iframe"></iframe>
+                        <iframe frameborder="0" src="LeGo.do" class="x-iframe"></iframe>
                     </div>
                 </div>
             </div>
@@ -359,13 +352,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="../../static/lib/layui/layui.js" charset="utf-8"></script>
         <script src="../../static/js/x-admin.js"></script>
         <script>
-        var _hmt = _hmt || [];
+       /*  var _hmt = _hmt || [];
         (function() {
           var hm = document.createElement("script");
           hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
           var s = document.getElementsByTagName("script")[0]; 
           s.parentNode.insertBefore(hm, s);
-        })();
-        </script>
+        })(); */
+      
     </body>
 </html>

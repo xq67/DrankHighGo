@@ -14,38 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jinglun.biz.N_adminBiz;
 import com.jinglun.entity.Admin;
+import com.jinglun.entity.MD5;
+import com.jinglun.util.InitMD5;
 
 @Controller
 public class AdminController {
 	@Resource
 	private N_adminBiz n_adminbiz;
-	
-	//验证管理员登录
-	@RequestMapping("/verifyuser.do")
-	public String verifyuser(String names,String pwds,HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{	
-		Admin admin=n_adminbiz.verifyAdministrator(names, pwds);
-		String mes="";
-		if(admin!=null){
-			request.getSession().setAttribute("users", admin);
+	InitMD5 m = new InitMD5();
 
-			mes= "index";
-		}else{
-			//request.getRequestDispatcher("login.jsp").forward(request, response);
-			mes= "login";
+	// 验证管理员登录
+	@RequestMapping("/verifyuser.do")
+	public String verifyuser(String names, String pwds, HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		MD5 m1 = m.toMD5(pwds);
+		String pwda = n_adminbiz.ShowPwdByMD5(names);
+		String password = m1.getPassword();
+		Admin admin = n_adminbiz.verifyAdministrator(names, password);
+		String mes = "";
+		if (pwda.equals(password)) {
+			request.getSession().setAttribute("users", admin);
+			mes = "index";
+		} else {
+			mes = "login";
 		}
 		return mes;
 
-		
-		}
-	
-	@RequestMapping("/index.do")
-	public String textJ(){
-		return "index";
 	}
+
 	@RequestMapping("/deip.do")
-	public String textJJ(String data){
-		System.out.println("进入跳转！");
-		return data;
+	public String textJJ() {
+		System.out.println("xxx");
+		return "MyJsp";
 	}
 }
-

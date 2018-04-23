@@ -9,5 +9,8 @@ public class TextJsp {
 	public String textJ(){
 		return "login";
 	}
-	
+	@RequestMapping("/LeGo.do")
+	public String gowelcome(){
+		return "MyJsp";
+	}
 }

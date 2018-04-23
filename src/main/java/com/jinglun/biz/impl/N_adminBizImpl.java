@@ -16,5 +16,10 @@ public class N_adminBizImpl implements N_adminBiz{
 		// TODO Auto-generated method stub
 		return n_admindao.verifyAdministrator(name, pwd);
 	}
+	@Override
+	public String ShowPwdByMD5(String name) {
+		// TODO Auto-generated method stub
+		return n_admindao.ShowPwdByMD5(name);
+	}
 
 }

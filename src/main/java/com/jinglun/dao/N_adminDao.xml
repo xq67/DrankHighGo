@@ -6,4 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<select id="verifyAdministrator" resultType="Admin">
  			select * from admin where name=#{name} and pwd=#{pwd};
  		</select>
+ 		
+ 		<select id="ShowPwdByMD5"  resultType="string">
+ 			SELECT pwd FROM admin WHERE NAME=#{name};
+ 		</select>
 </mapper>
