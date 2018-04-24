@@ -52,11 +52,12 @@ public class L_userBizImpl implements L_userBiz {
 	@Override
 	public int addDeal(List<Integer> cids) {
 		int o=0,c=0,mes=0;
+		String onum=System.currentTimeMillis()+"";
 		for (Integer cid : cids) {
 			//查询购物车信息
 			Car car=l_userDao.findcarBycid(cid);
 			//创建订单
-			o+=l_userDao.deal_CreateOverOrder(car);
+			o+=l_userDao.deal_CreateOverOrder(car,onum);
 			//删除购物车信息
 			c+=l_userDao.deal_delCar(cid);
 		}
@@ -71,6 +72,25 @@ public class L_userBizImpl implements L_userBiz {
 		// TODO Auto-generated method stub
 		return l_userDao.findAdd(uid);
 	}
+
+	@Override
+	public int updateCar(Integer addid, String phone,List<Integer> cids) {
+		int mes=0;
+		for (Integer cid : cids) {
+			mes+=l_userDao.updateCar(addid, phone, cid);
+		}
+		if(mes==cids.size()){mes=1;}
+		return mes;
+	}
+
+	@Override
+	public int addAddstr(String addstr, Integer uid) {
+		l_userDao.addAddstr(addstr, uid);    //将新地址插入地址表
+		int addid=l_userDao.findaddid(addstr, uid); //返回新地址的id
+		return addid;
+	}
+
+	
 
 	
 

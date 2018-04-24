@@ -1,10 +1,14 @@
 package com.jinglun.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
+import org.neo4j.cypher.internal.compiler.v2_1.docbuilders.internalDocBuilder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -88,5 +92,37 @@ public class UserController {
 		Integer uid=user.getUid();
 		List<Address> list=l_userBiz.findAdd(uid);
 		return list;
+	}
+	//用户交易商品年
+	@RequestMapping("/deal")
+	public String dealDo(HttpServletRequest request,Integer addid){
+		String mes="交易失败！";
+		System.out.println("进入交易请求");
+		String newAdd=request.getParameter("newAdd");
+		String cidxs=request.getParameter("list");
+		String[] cids=cidxs.split(",");
+		String conPhone=request.getParameter("conPhone");
+		List<Integer>list=new ArrayList<Integer>();
+		User user=(User) request.getSession().getAttribute("user");
+		try {
+			Integer uid=user.getUid();
+			for (String cid : cids) {
+				Integer x=Integer.parseInt(cid);
+				list.add(x);
+			}
+			if((addid!=0)&&(newAdd=="")){//使用的旧地址，和电话插入购物车
+				l_userBiz.updateCar(addid, conPhone, list);
+			}else if(newAdd!=""){//使用新地址，并拿到addid，将新的addid和电话插入购物车
+				int newAddid=l_userBiz.addAddstr(newAdd, uid);
+				l_userBiz.updateCar(newAddid, conPhone, list);
+			}
+			int num=l_userBiz.addDeal(list);
+			if(num==1){
+				mes="1";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mes;
 	}
 }

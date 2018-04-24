@@ -30,14 +30,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findcarBycid" resultType="Car">
 		select * from car where cid=#{cid}
 	</select>
-	<insert id="deal_CreateOverOrder" parameterType="Car">
-		insert into overorder (ootime,uid,dbid,dbcount,addid)
-		values(now(),#{uid},#{dbid},#{count},#{addid});
+	<insert id="deal_CreateOverOrder">
+		insert into overorder (ootime,uid,dbid,dbcount,addid,onum,phone)
+		values(now(),#{car.uid},#{car.dbid},#{car.count},#{car.addid},#{onum},#{car.phone});
 	</insert>
 	<delete id="deal_delCar">
 		delete from car where cid=#{cid}
 	</delete>
 	<select id="findAdd" resultType="Address">
 		select * from address where uid=#{uid}
+	</select>
+	<update id="updateCar">
+		UPDATE car SET addid=#{addid},phone=#{phone} WHERE cid=#{cid}
+	</update>
+	<!-- 新增地址 -->
+	<insert id="addAddstr">
+		INSERT INTO ADDRESS (ADDSTR,UID)VALUE(#{addstr},#{uid});
+	</insert>
+	<!-- 通过addstr查找id -->
+	<select id="findaddid" resultType="int">
+		select addid from ADDRESS where addstr=#{addstr} and uid=#{uid};
 	</select>
 </mapper>

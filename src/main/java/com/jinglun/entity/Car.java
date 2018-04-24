@@ -10,6 +10,13 @@ public class Car implements Serializable{
 	private Integer count;
 	private Integer addid;
 	private String phone;
+	private Integer dbid;
+	public Integer getDbid() {
+		return dbid;
+	}
+	public void setDbid(Integer dbid) {
+		this.dbid = dbid;
+	}
 	public String getPhone() {
 		return phone;
 	}

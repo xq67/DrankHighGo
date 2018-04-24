@@ -2,6 +2,8 @@ package com.jinglun.biz;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jinglun.entity.Address;
 import com.jinglun.entity.Car;
 import com.jinglun.entity.User;
@@ -17,8 +19,13 @@ public interface L_userBiz {
 	public int addcar(Integer uid,Integer dbid,Integer dbcount);
 	//显示用户购物车中的物品
 	public List<Car> findCarbdByUid(Integer uid);
-	// 1.删除购物车相关数据 2.生成订单
+	//1.删除购物车相关数据 2.生成订单
 	public int addDeal(List<Integer> cids);
 	//获取用户所有的地址
 	public List<Address> findAdd(Integer uid);
+	//使用的旧地址，和电话插入购物车
+	public int updateCar(Integer addid,String phone,List<Integer> cids);
+	//新增地址并返回地址编号
+	public int addAddstr(String addstr,Integer uid);
+	
 }

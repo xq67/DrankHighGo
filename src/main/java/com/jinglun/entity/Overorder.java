@@ -13,6 +13,20 @@ public class Overorder implements Serializable{
 	private Integer dbid;
 	private Integer dbcount;  //后买数量
 	private Integer addid;
+	private String phone;
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	private String onum;
+	public String getOnum() {
+		return onum;
+	}
+	public void setOnum(String onum) {
+		this.onum = onum;
+	}
 	public Integer getOoid() {
 		return ooid;
 	}
