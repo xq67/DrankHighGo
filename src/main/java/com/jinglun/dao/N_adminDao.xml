@@ -10,4 +10,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<select id="ShowPwdByMD5"  resultType="string">
  			SELECT pwd FROM admin WHERE NAME=#{name};
  		</select>
+ 		
+ 		<select id="UserCount" resultType="int">
+ 			SELECT COUNT(1)AS NUM FROM user
+ 			<trim prefix="where" prefixOverrides="and">
+ 			<if test="uname!=null">
+ 			and uname like '%${uname}%'
+ 			</if>
+ 			</trim>
+ 		</select>
+ 		
+ 		<select id="ShowUser" resultType="User">
+ 			SELECT a.`uId`,a.`uname`,a.`uphone`,a.`uemail`,a.`dizhi`,a.`time` FROM USER a where 1=1
+ 			<if test="uname!=null and uname!=''">
+ 				and uname like '%${uname}%'
+ 			</if>
+ 			LIMIT #{pageno},#{pagesize}	
+ 			
+ 		</select>
 </mapper>

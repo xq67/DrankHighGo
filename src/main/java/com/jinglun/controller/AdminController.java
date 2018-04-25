@@ -2,6 +2,9 @@ package com.jinglun.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -11,10 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jinglun.biz.N_adminBiz;
 import com.jinglun.entity.Admin;
 import com.jinglun.entity.MD5;
+import com.jinglun.entity.Page;
+import com.jinglun.entity.User;
 import com.jinglun.util.InitMD5;
 
 @Controller
@@ -44,7 +50,27 @@ public class AdminController {
 
 	@RequestMapping("/deip.do")
 	public String textJJ() {
-		System.out.println("xxx");
 		return "MyJsp";
+	}
+	
+	//分页展示用户信息
+	@RequestMapping("/ShowUser.do")
+	public ModelAndView ShowUserByName(HttpServletRequest request) throws UnsupportedEncodingException{
+		ModelAndView mv=new ModelAndView();
+		String pno=request.getParameter("pno");
+		String title=request.getParameter("uname");
+		if(title!=null){
+			title=new String(title.getBytes("iso-8859-1"),"utf-8");
+		}
+		int p=1;
+		if(pno!=null){
+			p=Integer.parseInt(pno);
+		}
+		Page page=n_adminbiz.getPage(title, p);
+		mv.addObject("page", page);
+		mv.addObject("pno", p);
+		mv.setViewName("member-list");
+		return mv;
+		
 	}
 }

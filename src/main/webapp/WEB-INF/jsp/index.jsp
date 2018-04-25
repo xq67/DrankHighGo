@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%
 String path = request.getContextPath();
@@ -35,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <li class="layui-nav-item">
                         <a href="javascript:;"></a>
                         <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                          <dd><a href="">个人信息</a></dd>
+                          <dd><a href="">${users.name}</a></dd>
                           <dd><a href="./login.html">退出</a></dd>
                         </dl>
                       </li>
@@ -179,7 +180,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </a>
                             <dl class="layui-nav-child">
                                 <dd class="">
-                                    <a href="javascript:;" _href="member-list.html">
+                                    <a href="javascript:;" _href="ShowUser.do">
                                         <cite>会员列表</cite>
                                     </a>
                                 </dd>

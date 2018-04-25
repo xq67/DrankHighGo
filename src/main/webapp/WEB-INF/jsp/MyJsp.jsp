@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" href="../../static/css/x-admin.css" media="all">
+<!-- <link rel="stylesheet" href="../../static/css/x-admin.css" media="all"> -->
 <link rel="stylesheet" type="text/css"
 	href="../../static/css/aui-production.min.css" />
 <link id="layout-theme" rel="stylesheet" type="text/css"
@@ -28,7 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	href="../../static/css/common.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="../../static/css/responsive.min.css" />
-
 </head>
 
 <body>
@@ -197,8 +196,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </div>
 	</body>
-  <script type="text/javascript" src=../../static/js/aui-production.min.js"></script>
-  <script>
+  <script type="text/javascript" src="../../static/js/aui-production.min.js"></script>
+  <script type="text/javascript">
             jQuery(window).load(
                 function(){
 
